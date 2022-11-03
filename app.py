@@ -1,34 +1,25 @@
-from flask import *
-import data
+from flask import Flask
+from data import users
+from datetime import datetime
+
 app = Flask(__name__)
 
-
-# default router
 @app.route("/")
-def index():
-    return "Welcome to PMS backend APIs"
+def hello():
+    return "Hello world"
 
+@app.route("/get-biryani")
+def getBiryani():
+    return "Here is your garma garam biryani"
 
-
-# api to return list of users
 @app.route("/get-all-users")
 def getAllUsers():
-    return {"data" : data.users}
+    return {"users" : users}
 
 
-# api to return list of projects
-@app.route("/get-all-projects")
-def getAllProjects():
-    return {"data" : data.projects}
-
-
-# api for users login
-@app.route("/login")
-def login():
-    return "Logged in successfully"
-
-
+@app.route("/get-time")
+def getTime():
+    return {"time" : datetime.now()}
 
 if __name__ == "__main__":
     app.run()
-
